@@ -1,0 +1,17 @@
+{
+  "$schema": "https://dpds.dev/schema.json",
+  "style": "default",
+  "tailwind": {
+    "css": "src/index.css",
+    "baseColor": "dpds-green"
+  },
+  "rsc": false,
+  "tsx": true,
+  "aliases": {
+    "components": "@/components",
+    "ui": "@/components/ui",
+    "utils": "@/lib/utils",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  }
+}

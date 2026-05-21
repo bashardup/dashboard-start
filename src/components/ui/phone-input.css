@@ -1,0 +1,81 @@
+/* Make the iti wrapper fill its container and look like the shadcn Input */
+.phone-input-wrapper .iti {
+  width: 100%;
+}
+
+.phone-input-wrapper .phone-input-field {
+  width: 100%;
+  height: 3.5rem; /* h-14 */
+  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid var(--input);
+  background: transparent;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.875rem;
+  color: inherit;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.phone-input-wrapper .phone-input-field:focus-visible {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--primary) 15%, transparent);
+}
+
+/* Flag button area */
+.phone-input-wrapper .iti__flag-container {
+  padding: 0 2px;
+}
+
+.phone-input-wrapper .iti__selected-flag {
+  border-radius: 0.5rem 0 0 0.5rem;
+  background: transparent;
+  padding: 0 8px;
+}
+
+.phone-input-wrapper .iti__selected-flag:hover,
+.phone-input-wrapper .iti__selected-flag:focus {
+  background-color: var(--accent);
+}
+
+/* Dropdown list */
+.phone-input-wrapper .iti__dropdown-content {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  overflow: hidden;
+}
+
+.phone-input-wrapper .iti__search-input {
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  color: inherit;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  outline: none;
+  width: 100%;
+}
+
+.phone-input-wrapper .iti__country-list {
+  max-height: 220px;
+}
+
+.phone-input-wrapper .iti__country.iti__highlight,
+.phone-input-wrapper .iti__country:hover {
+  background-color: var(--accent);
+}
+
+.phone-input-wrapper .iti__dial-code {
+  color: var(--muted-foreground);
+}
+
+/* Invalid state */
+.phone-input-invalid .phone-input-field {
+  border-color: var(--destructive);
+}
+
+/* Dark mode */
+.dark .phone-input-wrapper .phone-input-field {
+  background: color-mix(in oklch, var(--input) 30%, transparent);
+}

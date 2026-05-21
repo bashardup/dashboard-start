@@ -1,0 +1,578 @@
+{
+  "$schema": "Entries are listed newest-first. Each entry: { date: YYYY-MM-DD, type, summary, details?, files? }. Types: added | changed | fixed | removed | docs | chore.",
+  "entries": [
+    {
+      "date": "2026-05-21",
+      "type": "added",
+      "summary": "Step 8 — Getting Started complete: 4 pages, ThemeToggle primitive, prose-page shells",
+      "details": [
+        "Added Introduction, Project Structure, Theming, and Dark Mode pages — each consumes the new <DocsPage> + <Prose> shells in src/components/docs/",
+        "Added <ThemeToggle> UI primitive (src/components/ui/theme-toggle.tsx) — Light / Dark / System dropdown with animated Sun↔Moon trigger, composes DropdownMenu + Button (no direct Radix)",
+        "Consolidated the header's inline <ModeToggle> (light/dark pill) onto <ThemeToggle>; src/components/menu-toggle.tsx deleted",
+        "Cut the duplicate Getting Started Typography page — /docs/typography now redirects to /foundations/typography, sidebar entry + sidebar.gsTypography i18n key removed",
+        "Theming page documents the real OKLCH token inventory (not HSL); side-by-side Light/Dark grid bypasses var() cascade by pre-resolving palette refs so swatches stay correct regardless of page mode",
+        "Project name swept from 'Service Portal Design System' / 'DP Design System' to 'DPDS 2.0' / 'Dubai Police Design System 2.0' across brand strings, framing, and patterns",
+        "Brand placeholder renamed: .brand-acme → .brand-dpds; example email placeholders → @dubaipolice.gov.ae",
+        "Token-audit findings logged for Step 9 cleanup (--destructive-foreground / --sidebar-accent / palette-in-.dark oddities)"
+      ],
+      "files": [
+        "src/pages/introduction-page.tsx",
+        "src/pages/project-structure-page.tsx",
+        "src/pages/theming-page.tsx",
+        "src/pages/dark-mode-page.tsx",
+        "src/components/docs/docs-page.tsx",
+        "src/components/docs/prose.tsx",
+        "src/components/docs/index.ts",
+        "src/components/ui/theme-toggle.tsx",
+        "src/components/ui/header.tsx",
+        "src/components/app-sidebar.tsx",
+        "src/App.tsx",
+        "src/locales/en.json",
+        "package.json",
+        "index.html",
+        "docs/STEP_8_DISCOVERY.md",
+        "docs/STEP_8_MIGRATION_LOG.md",
+        "docs/STEP_9_BACKLOG.md"
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "type": "added",
+      "summary": "Step 7F — Layout migration: 9 pages, 7 new primitives, legacy Accordion JSX removed",
+      "details": [
+        "Discovery flagged brief intro line as partially wrong: Aspect Ratio / Collapsible / Scroll Area / Resizable were also missing — built 7 primitives, not the 3 the brief expected",
+        "Pages built (9): Aspect Ratio, Separator, Container, Collapsible, Scroll Area, Grid, Stack, Accordion, Resizable",
+        "New primitives (7): aspect-ratio.tsx (Radix), container.tsx (CVA polymorphic), collapsible.tsx (Radix), scroll-area.tsx (Radix), grid.tsx (CVA polymorphic), stack.tsx (Stack + HStack + VStack with divider prop), resizable.tsx (react-resizable-panels wrapper with grip handle)",
+        "New deps: @radix-ui/react-aspect-ratio, @radix-ui/react-collapsible, @radix-ui/react-scroll-area, react-resizable-panels (pinned to v2 — v4 renamed exports)",
+        "Polymorphic ref typing for Container/Grid uses Component: any with eslint-disable (standard shadcn escape hatch)",
+        "Stack's divider prop interleaves between children via React.Children.toArray + flatMap (filtered to valid elements so text children don't break key warnings)",
+        "Separator page: removed misdocumented decorative prop — codebase uses base-ui Separator, not Radix",
+        "Accordion legacy dispatch JSX removed from ui-components-page.tsx (78-line block + 7-line propsTable + unused imports, -91 lines net)",
+        "9 per-page commits + this log; all routes 200 verified"
+      ],
+      "files": [
+        "src/pages/aspect-ratio-page.tsx",
+        "src/pages/separator-page.tsx",
+        "src/pages/container-page.tsx",
+        "src/pages/collapsible-page.tsx",
+        "src/pages/scroll-area-page.tsx",
+        "src/pages/grid-page.tsx",
+        "src/pages/stack-page.tsx",
+        "src/pages/accordion-page.tsx",
+        "src/pages/resizable-page.tsx",
+        "src/components/ui/aspect-ratio.tsx",
+        "src/components/ui/container.tsx",
+        "src/components/ui/collapsible.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/components/ui/grid.tsx",
+        "src/components/ui/stack.tsx",
+        "src/components/ui/resizable.tsx",
+        "src/pages/ui-components-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json",
+        "package.json",
+        "docs/STEP_7F_DISCOVERY.md",
+        "docs/STEP_7F_MIGRATION_LOG.md"
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "type": "added",
+      "summary": "Step 7E — Feedback & Overlay: 6 pages, 2 new primitives, Alert variant extension",
+      "details": [
+        "Discovery: all 6 candidates were STUB; Banner/Toast/Dialog already shipped in prior steps",
+        "Pages built (6): Spinner, Progress, Alert, Popover, Hover Card, Drawer/Sheet (single page covering both primitives)",
+        "New primitives: spinner.tsx (custom SVG, no dep), hover-card.tsx (Radix wrappers)",
+        "New dep: @radix-ui/react-hover-card",
+        "Alert primitive extended: added info / success / warning variants (was default + destructive); destructive restyled to match status palette",
+        "Drawer/Sheet framing: Step 2 consolidation closed as nav-level only — Sheet (Radix Dialog) for desktop side panels, Drawer (vaul) for mobile drag-to-dismiss. Same pattern as Stepper/Progress Tracker in 7D.",
+        "Dead-code debt logged: <UiComponentsPage section> JSX for alert/drawer/progress-bar now unreachable. Don't remove this pass."
+      ],
+      "files": [
+        "src/pages/spinner-page.tsx",
+        "src/pages/progress-page.tsx",
+        "src/pages/alert-page.tsx",
+        "src/pages/popover-page.tsx",
+        "src/pages/hover-card-page.tsx",
+        "src/pages/drawer-page.tsx",
+        "src/components/ui/spinner.tsx",
+        "src/components/ui/hover-card.tsx",
+        "src/components/ui/alert.tsx",
+        "src/App.tsx",
+        "src/locales/en.json",
+        "package.json",
+        "docs/STEP_7E_DISCOVERY.md",
+        "docs/STEP_7E_MIGRATION_LOG.md"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "changed",
+      "summary": "Step 7D — housekeeping: dead JSX cleanup + Colors / Iconography i18n drift fix",
+      "details": [
+        "Removed 4 dead <UiComponentsPage section=\"...\" /> JSX blocks (badges, breadcrumb, stepper, navigation-menu) from ui-components-page.tsx — -316 lines / +3 lines. The routes had been rewired to dedicated pages in Step 7B; only the dead dispatch JSX remained.",
+        "Pruned dead imports + helpers (Badge, Stepper, Breadcrumb*, NavigationMenu*, InteractiveStepper, badgeProps, stepperProps). UiComponentsPage stays alive — 7 sections still need it (dropdown-menu, profile-switcher, alert, drawer, progress-bar, accordion, swiper).",
+        "Item 2 (Progress Tracker → Stepper primitive consolidation) DEFERRED after Phase-1 gap analysis. All 4 ProgressTracker import sites use features Stepper doesn't have (vertical layout, content slots, statusLabel, 'in-progress' status). Closing the Step 2 consolidation as nav-level only — STEP_2_DECISIONS.md updated.",
+        "Colors 'Tokens in context' card moved 5 hardcoded strings to foundations.colors.inContext.demo.{label, title, body, primaryAction, secondaryAction}. Iconography 'Common patterns' moved 3 strings to foundations.iconography.patterns.demo.{exportLabel, statusLabel, searchPlaceholder}. Code-snippet template strings intentionally left as literal English (copy-paste reference).",
+        "Spot-check found routine table column headers hardcoded across all 8 foundation pages. Flagged for a future 'i18n parity' pass — scoped out here."
+      ],
+      "files": [
+        "src/pages/ui-components-page.tsx",
+        "src/pages/colors-page.tsx",
+        "src/pages/iconography-page.tsx",
+        "src/locales/en.json",
+        "docs/STEP_2_DECISIONS.md",
+        "docs/STEP_7D_HOUSEKEEPING.md"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Step 7C — Data Table docs page",
+      "details": [
+        "Closes the hard-stop deferred from Step 7B",
+        "Page covers all 9 brief variants: basic, sortable columns, global search, custom filter slot (status Select), row selection via createSelectColumn, row actions (DropdownMenu), with Add button, empty state (+ EmptyState pairing), loading skeleton row",
+        "12 realistic CRM tickets across status/priority/assignee with Badge-tinted columns",
+        "New route /ui/data-table; the existing /ui/table continues to point at the basic Table primitive (separate page)",
+        "Primitive untouched — built-in toolbar + pagination remain. Pagination primitive integration (replacing inline page buttons) deferred to Step 7D housekeeping."
+      ],
+      "files": [
+        "src/pages/data-table-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Step 7B — Data Display + Navigation migration: 10 pages, 4 new primitives, 1 file rename",
+      "details": [
+        "Discovery: all 11 candidates were STUB; Data Table deferred to Step 7C per the hard-stop in the brief",
+        "Pages built (10): Badge, Avatar, Skeleton, Breadcrumb, Pagination, Stepper, Command, Menu, Context Menu, Navbar",
+        "New primitives: pagination.tsx (9 exports), command.tsx (10 cmdk wrappers + CommandDialog), context-menu.tsx (15 Radix wrappers), navbar.tsx (6 layout pieces)",
+        "New dep: @radix-ui/react-context-menu",
+        "Rename: navigation-menu.tsx → menu.tsx (1 import site updated); exports keep NavigationMenu* names",
+        "Stepper / Progress Tracker remain separate primitives — different shapes, 5 active ProgressTracker import sites; convergence is Step 7D work",
+        "All 10 /ui/* routes return HTTP 200; tsc clean"
+      ],
+      "files": [
+        "src/pages/badge-page.tsx",
+        "src/pages/avatar-page.tsx",
+        "src/pages/skeleton-page.tsx",
+        "src/pages/breadcrumb-page.tsx",
+        "src/pages/pagination-page.tsx",
+        "src/pages/stepper-page.tsx",
+        "src/pages/command-page.tsx",
+        "src/pages/menu-page.tsx",
+        "src/pages/context-menu-page.tsx",
+        "src/pages/navbar-page.tsx",
+        "src/components/ui/pagination.tsx",
+        "src/components/ui/command.tsx",
+        "src/components/ui/context-menu.tsx",
+        "src/components/ui/navbar.tsx",
+        "src/components/ui/menu.tsx",
+        "src/App.tsx",
+        "src/locales/en.json",
+        "package.json",
+        "docs/STEP_7B_DISCOVERY.md",
+        "docs/STEP_7B_MIGRATION_LOG.md"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Step 7A — Form & Input migration: 4 net-new pages + Combobox primitive",
+      "details": [
+        "Discovery: 6/10 Form & Input pages already on the 8-section template; only 4 needed building",
+        "Label — new /forms/label page + route + sidebar repointed from broken /ui/label",
+        "Switch — replaces legacy FormsPage section='switch' dispatch; 7 examples incl. notification settings list",
+        "Slider — replaces legacy FormsPage section='slider' dispatch; 7 examples incl. range with two thumbs and vertical orientation",
+        "Combobox — new composition primitive (10 exports) wrapping Radix Popover + cmdk; 6 examples incl. multi-select, groups, creatable, async loading; cmdk@^1.1.1 added as dependency",
+        "All 10 /forms/* routes return HTTP 200; no ComingSoon or legacy dispatch remains; tsc clean"
+      ],
+      "files": [
+        "src/pages/label-page.tsx",
+        "src/pages/switch-page.tsx",
+        "src/pages/slider-page.tsx",
+        "src/pages/combobox-page.tsx",
+        "src/components/ui/combobox.tsx",
+        "src/App.tsx",
+        "src/components/app-sidebar.tsx",
+        "src/locales/en.json",
+        "package.json",
+        "docs/STEP_7A_DISCOVERY.md",
+        "docs/STEP_7A_MIGRATION_LOG.md"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Step 6 — 5 net-new components (Tag, Banner, EmptyState, List, StatTile)",
+      "details": [
+        "Tag — interactive sibling of Badge with 6 color variants, 2 sizes, selected + removable states. Renders as <button> when onClick is set, <span> otherwise",
+        "Banner — full-width page-level notice with 4 tones (info/success/warning/error), optional action button, dismissible. Distinct from Alert (inline) and Toast (transient)",
+        "EmptyState — compact composable empty-state panel with 4 variants (no-results / no-data / error / permission), default icon per variant. Legacy Lottie/decor splash renamed to EmptyStateHero (2 import sites updated)",
+        "List — composable rows with dot-notation API (List.Item, List.Leading, List.Content, List.Title, List.Description, List.Trailing). dense/comfortable density, optional dividers, opt-in interactivity",
+        "StatTile — KPI tile with label, value, delta indicator (tone-aware), Lucide icon, inline SVG sparkline (80×24), loading skeletons, optional onClick. deltaTone prop overrides direction-based coloring for inverted metrics (response time, churn)",
+        "All 5 ComingSoon stubs replaced in App.tsx. Each docs page follows the 8-section anatomy with UsesTokens footer",
+        "Per-component commits + docs/STEP_6_NEW_COMPONENTS.md migration log with API decisions and Step 7 followups"
+      ],
+      "files": [
+        "src/components/ui/tag.tsx",
+        "src/components/ui/banner.tsx",
+        "src/components/ui/empty-state.tsx",
+        "src/components/ui/empty-state-hero.tsx",
+        "src/components/ui/list.tsx",
+        "src/components/ui/stat-tile.tsx",
+        "src/pages/tag-page.tsx",
+        "src/pages/banner-page.tsx",
+        "src/pages/empty-state-page.tsx",
+        "src/pages/list-page.tsx",
+        "src/pages/stat-tile-page.tsx",
+        "src/components/ui/upcoming-appointments.tsx",
+        "src/pages/services-listing-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json",
+        "docs/STEP_6_NEW_COMPONENTS.md"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Foundations Step 5 — Phase 3 complete: UsesTokens footers + migration log",
+      "details": [
+        "Applied <UsesTokens> footer to all 17 migrated component pages (Button, Input, Select, Card, Tabs, Tooltip, Toast, Dialog, Sidebar, Form, Table, Textarea, Checkbox, Radio, Datepicker, Input OTP, File Upload)",
+        "Each footer lists the foundations the component actually consumes (e.g. Tooltip: colors / radius / spacing / typography / elevation / motion) and links to each foundation page",
+        "Step 5 migration log written at docs/STEP_5_FOUNDATIONS.md — full token inventory (what existed, what Phase 2 added), helper docs, per-page notes, the foundation-key mapping table, and open follow-ups",
+        "Step 5 complete: 4 new doc helpers + 8 real foundation pages + 17 cross-link footers"
+      ],
+      "files": [
+        "docs/STEP_5_FOUNDATIONS.md",
+        "src/pages/buttons-page.tsx",
+        "src/pages/input-page.tsx",
+        "src/pages/select-page.tsx",
+        "src/pages/card-page.tsx",
+        "src/pages/tabs-page.tsx",
+        "src/pages/tooltip-page.tsx",
+        "src/pages/toast-page.tsx",
+        "src/pages/dialog-page.tsx",
+        "src/pages/sidebar-page.tsx",
+        "src/pages/form-page.tsx",
+        "src/pages/table-page.tsx",
+        "src/pages/textarea-page.tsx",
+        "src/pages/checkbox-page.tsx",
+        "src/pages/radio-page.tsx",
+        "src/pages/datepicker-page.tsx",
+        "src/pages/input-otp-page.tsx",
+        "src/pages/file-upload-page.tsx"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Foundations Step 5 — Phase 2 complete: Accessibility page",
+      "details": [
+        "Accessibility foundation page replaces the ComingSoon stub at /foundations/accessibility — last of the 8 foundation pages",
+        "Prose-heavy anatomy (no token swatches): 5 rule sections (Keyboard, ARIA, Color contrast, Motion, Touch targets) + Pre-merge checklist + Going-deeper external links",
+        "Each section uses a ProseSection helper that pairs an intro paragraph with a bulleted rule list",
+        "Pre-merge checklist (8 items): tab walkthrough, screen-reader pass, axe contrast scan, reduced-motion toggle, keyboard-only run, label audit, 320px responsive, 200% zoom",
+        "External resource links: WCAG 2.1 Quick Reference, ARIA APG, axe DevTools, WebAIM contrast guide, Inclusive Components",
+        "All 8 foundation pages now real: Colors, Typography, Spacing, Radius, Motion, Elevation, Iconography, Accessibility — Phase 3 (UsesTokens footers on the 15 migrated component pages + STEP_5_FOUNDATIONS.md migration log) remains"
+      ],
+      "files": [
+        "src/pages/accessibility-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "changed",
+      "summary": "Iconography page: added Animated icons (Lottie) subsection",
+      "details": [
+        "New section between Library and Sizes showing 6 curated Lottie animations from lottieRegistry (active-tickets, completed-request, icon-01..04)",
+        "Slim LottieTile component — auto-plays, lazy-loads JSON per icon, no playback controls (the full gallery at /lottie-icons keeps those)",
+        "Callout + outbound link to /lottie-icons for the full 52-icon search gallery",
+        "Usage snippet showing useLottie + lottieRegistry.find pattern with autoplay"
+      ],
+      "files": [
+        "src/pages/iconography-page.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Foundations Step 5 — Phase 2 (in progress): Iconography page",
+      "details": [
+        "Iconography foundation page replaces the ComingSoon stub at /foundations/iconography",
+        "Library sample of 8 representative Lucide icons (Settings, Bell, Mail, Calendar, Search, Download, Check, AlertCircle)",
+        "Sizes section: 4-row table (size-4 / size-5 / size-6 / size-8 = 16 / 20 / 24 / 32px) with live preview and use cases",
+        "Stroke-width section: 3 cards (1.5 / 2 / 2.5) showing how strokeWidth affects perceived weight",
+        "Color section: 4 swatches showing currentColor inheritance via text-* utilities",
+        "Common-patterns section: icon-only button, icon+text, decorative aria-hidden, leading-icon input — each with live preview + snippet",
+        "6 usage rules (aria-label requirement, aria-hidden for decorative, size-* over h/w, currentColor not fill, flex alignment, one-icon-per-concept consistency)",
+        "Install/usage snippets for tree-shaken imports, real-world search field, accessible icon-only button"
+      ],
+      "files": [
+        "src/pages/iconography-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Foundations Step 5 — Phase 2 (in progress): Elevation page + shadow / z-index CSS variables",
+      "details": [
+        "Elevation & Shadows foundation page replaces the ComingSoon stub at /foundations/elevation",
+        "Adds 4 semantic shadow variables (--shadow-card, --shadow-popover, --shadow-modal, --shadow-toast) and 9 z-index layer variables (--z-base through --z-tooltip, gap of 10–20 between layers) to the @theme block in src/index.css. Additive — Tailwind's shadow-sm..2xl scale untouched",
+        "Page sections: semantic shadows demo cards, full Tailwind shadow scale reference (xs..2xl), 9-layer z-index table",
+        "5 usage rules (match shadow to intent, don't invent z-index numbers, tune dark-mode shadow alpha, avoid arbitrary shadow-[..] one-offs, shadows are color too)",
+        "Override snippet covers both shadow and z-index plus a .dark example for heavier dark-mode shadows"
+      ],
+      "files": [
+        "src/pages/elevation-page.tsx",
+        "src/index.css",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Foundations Step 5 — Phase 2 (in progress): Motion page + motion CSS variables",
+      "details": [
+        "Motion foundation page replaces the ComingSoon stub at /foundations/motion",
+        "First real CSS variable additions of Phase 2: --duration-{instant,fast,normal,slow,slower} and --ease-{custom,spring} added to src/index.css via a new non-inline @theme block (additive to Tailwind defaults, doesn't override built-in ease-in / ease-out / ease-in-out / ease-linear)",
+        "5 duration rows and 6 easing rows with hover-to-play ball demos that use the actual tokens",
+        "Reduced-motion section with a warning callout: design system doesn't enforce prefers-reduced-motion automatically — the override snippet includes the @media block apps must paste",
+        "Usage rules cover purpose, scale (small=fast / large=slow), entrance/exit easing convention, transform-and-opacity-only performance rule, when to reach for spring, motion-as-sole-indicator anti-pattern"
+      ],
+      "files": [
+        "src/pages/motion-page.tsx",
+        "src/index.css",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Foundations Step 5 — Phase 2 (in progress): Radius page",
+      "details": [
+        "Border Radius foundation page replaces the ComingSoon stub at /foundations/radius",
+        "9-step radius scale (none → 4xl, plus full) rendered as live shape swatches via TokenScale",
+        "Documents the calc() relationships: every step derives from --radius (0.625rem default), so overriding the base rescales the system",
+        "In-context demo card mixes radii (input md, buttons lg, container 2xl, avatar/badge full) to show nesting rules",
+        "Usage rules cover consistency-by-role, outer-larger-than-inner nesting, when to reach for full/none, and scale discipline"
+      ],
+      "files": [
+        "src/pages/radius-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Foundations Step 5 — Phase 2 (in progress): Spacing page",
+      "details": [
+        "Spacing & Layout foundation page replaces the ComingSoon stub at /foundations/spacing",
+        "17-step spacing scale rendered as live width bars (0 → 32 = 0px → 128px), surfaced via TokenScale",
+        "Container width reference (max-w-prose through max-w-7xl) with typical use cases",
+        "Tailwind utility cheat sheet (p/m/gap/space/max-w/container) with logical-axis variants called out",
+        "Usage rules covering scale discipline, gap vs space-*, responsive spacing, RTL-safe logical utilities, padding vs margin, prose width",
+        "Override snippet for adjusting --spacing base unit (Tailwind v4 derives everything from this)"
+      ],
+      "files": [
+        "src/pages/spacing-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Foundations Step 5 — Phase 2 (in progress): Typography page",
+      "details": [
+        "Typography foundation page replaces the ComingSoon stub at /foundations/typography",
+        "Two font specimens (Dubai sans, Bukra mono) with all available weights and purpose notes",
+        "9-step semantic type scale (Display → Caption) with live size + line-height rendering, mapped to Tailwind utilities via TokenScale helper",
+        "Usage rules cover line length, line-height, weight-as-hierarchy, mono-for-metadata, alignment, scaling discipline",
+        "Override snippet for swapping --font-sans / --font-mono / --font-heading"
+      ],
+      "files": [
+        "src/pages/typography-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Foundations Step 5 — Phase 1: docs helpers + Colors page",
+      "details": [
+        "New helpers: FoundationPage, TokenSwatch, TokenScale, UsesTokens (barrel-exported from src/components/docs)",
+        "Colors foundation page replaces the ComingSoon stub at /foundations/colors",
+        "Semantic tokens (~29 — surface, brand, status, border, plus all 8 sidebar tokens) with light + dark resolved values side-by-side; foreground tokens annotated with their intended pair and a conservative WCAG chip (AAA / AA / AA Large / Verify). Palette laid out tailwindcss.com-style — 12-shade strip per scale across all 16 palette scales (gray, slate, sage, blue-gray, primary, secondary, sps, informative, success, warning, error, turquoise, purple, pink, rose, khaki), click-to-copy var(--token), shift+click for the bg-* class",
+        "Adds opacity demo (/10 → /100) and a 'tokens in context' notification card showing semantic tokens at work",
+        "Includes Tailwind utility mapping, usage rules, and a paste-ready override snippet",
+        "Phase 2 (7 remaining foundation pages) and Phase 3 (component-page footers) to follow"
+      ],
+      "files": [
+        "src/components/docs/foundation-page.tsx",
+        "src/components/docs/token-swatch.tsx",
+        "src/components/docs/token-scale.tsx",
+        "src/components/docs/uses-tokens.tsx",
+        "src/components/docs/index.ts",
+        "src/pages/colors-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "docs",
+      "summary": "Dedicated File Upload docs page (single + multi)",
+      "details": [
+        "Replaces the legacy FormsPage dispatch for /forms/fileupload",
+        "Covers FileInput and MultiFileInput on one page with separate usage and examples sections",
+        "10 examples total: 5 single-file (default, accept filter, label, onChange, images-only) + 5 multi-file (default, maxFiles, accept, onChange, label)"
+      ],
+      "files": [
+        "src/pages/file-upload-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "docs",
+      "summary": "Dedicated Input OTP docs page",
+      "details": [
+        "Replaces the ComingSoon stub for /forms/input-otp",
+        "8 examples: default, 3-3 separator, digits-only pattern, 4-digit short code, controlled, auto-submit onComplete, error state, disabled",
+        "Live demos for controlled value and onComplete auto-submit"
+      ],
+      "files": [
+        "src/pages/input-otp-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "docs",
+      "summary": "Dedicated Datepicker docs page",
+      "details": [
+        "Replaces the legacy FormsPage dispatch for /forms/datepicker",
+        "Documents the Popover + Calendar composition pattern (no single primitive)",
+        "8 examples: single, range (2-month), multiple, min/max limits, inline, defaultMonth, year/month dropdown nav, with label"
+      ],
+      "files": [
+        "src/pages/datepicker-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "docs",
+      "summary": "Dedicated Radio docs page",
+      "details": [
+        "Replaces the legacy FormsPage dispatch for /forms/radio",
+        "8 examples covering defaultValue, controlled, descriptions, horizontal layout, full-group / single-item disabled, required",
+        "Live demo for controlled selection (delivery method picker)"
+      ],
+      "files": [
+        "src/pages/radio-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "docs",
+      "summary": "Dedicated Checkbox docs page",
+      "details": [
+        "Replaces the legacy FormsPage dispatch for /forms/checkbox",
+        "9 examples including indeterminate, select-all parent/child, and multi-select group patterns",
+        "Live demos for indeterminate cycling and parent-child selection state"
+      ],
+      "files": [
+        "src/pages/checkbox-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "docs",
+      "summary": "Dedicated Textarea docs page",
+      "details": [
+        "Replaces the legacy FormsPage dispatch for /forms/textarea",
+        "8-section anatomy: preview → install → usage → 8 examples → props → a11y → related",
+        "Examples cover auto-resize (field-sizing-content), character counter, fixed rows, error state, disabled, read-only"
+      ],
+      "files": [
+        "src/pages/textarea-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "changed",
+      "summary": "Changelog entries now use the CardWidget surface style",
+      "details": [
+        "Replaced custom list-item containers with CardWidget + CardWidgetContent (size=\"sm\")",
+        "Picks up the gradient border, radial backdrop, and dark-mode shadow used elsewhere in the docs"
+      ],
+      "files": [
+        "src/pages/changelog-page.tsx"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "added",
+      "summary": "Changelog page and automated update workflow",
+      "details": [
+        "New /docs/changelog route backed by src/data/changelog.json",
+        "Stop hook nudges Claude to log user-visible changes",
+        "changelog-update skill carries the append procedure"
+      ],
+      "files": [
+        "src/data/changelog.json",
+        "src/pages/changelog-page.tsx",
+        ".claude/skills/changelog-update/SKILL.md",
+        ".claude/settings.json"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "type": "docs",
+      "summary": "Docs migration Step 4 — 10 dedicated component pages",
+      "details": [
+        "New pages: input, select, card, tabs, tooltip, toast, dialog, sidebar, form, table",
+        "Each page follows the 8-section anatomy (title → preview → install → usage → examples → props → a11y → related)",
+        "Table primitives exported from data-table.tsx",
+        "Per-page migration log captured in docs/STEP_4_MIGRATION_LOG.md"
+      ],
+      "files": [
+        "src/pages/input-page.tsx",
+        "src/pages/select-page.tsx",
+        "src/pages/card-page.tsx",
+        "src/pages/tabs-page.tsx",
+        "src/pages/tooltip-page.tsx",
+        "src/pages/toast-page.tsx",
+        "src/pages/dialog-page.tsx",
+        "src/pages/sidebar-page.tsx",
+        "src/pages/form-page.tsx",
+        "src/pages/table-page.tsx",
+        "src/App.tsx",
+        "src/locales/en.json"
+      ]
+    }
+  ]
+}
